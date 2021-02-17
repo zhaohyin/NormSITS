@@ -1,7 +1,7 @@
 # NormSITS
 A cross-platform Satellite Images Time Series(SITS) preprocessing system.
 
-NormSITS is released under the terms of the MIT license, and thus free for commercial and research use. Feel free to normalized your own Satellite Images Time Series (SITS),to add NMAG in your own project.You are welcomed to make contributions to this project. Email zhyin@zju.edu.cn, or open an issue here on GitHub for support. 
+NormSITS is released under the terms of the BSD license, and thus free for commercial and research use. Feel free to normalized your own Satellite Images Time Series (SITS),to add NMAG in your own project.You are welcomed to make contributions to this project. Email zhyin@zju.edu.cn, or open an issue here on GitHub for support. 
 
 Citation (more to be added soon):
 
@@ -58,4 +58,4 @@ Then, Run this Command:
 
 After a successful compilation, NormSITS looks like this:
 
-<img src='./png/display.PNG'>
+<img src='./png/display.png'>
