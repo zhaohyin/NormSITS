@@ -7,17 +7,17 @@
     - [0.2 PyQt](#02-pyqt)
     - [0.3 MySQL](#03-mysql)
     - [0.4 NumPy](#04-numpy)
-  - [0.5 Functions](#05-functions)
-  - [1. Build from source](#1-build-from-source)
-  - [2. Experimental details of NMAG](#2-experimental-details-of-nmag)
-    - [2.1 Obtain SITS](#21-obtain-sits)
-    - [2.2 Choose Study Area](#22-choose-study-area)
-    - [2.3 The Preparation of PIFs](#23-the-preparation-of-pifs)
-    - [2.4 NMAG](#24-nmag)
-      - [2.4.1 GA](#241-ga)
-      - [2.4.2 The parameters of ANN](#242-the-parameters-of-ann)
-      - [2.4.3 The ANN error convergence graphs](#243-the-ann-error-convergence-graphs)
-      - [2.4.4 The Normalized results for SITS by using NMAG](#244-the-normalized-results-for-sits-by-using-nmag)
+  - [1. Functions](#1-functions)
+  - [2. Build from source](#2-build-from-source)
+  - [3. Experimental details of NMAG](#3-experimental-details-of-nmag)
+    - [3.1 Obtain SITS](#31-obtain-sits)
+    - [3.2 Choose Study Area](#32-choose-study-area)
+    - [3.3 The Preparation of PIFs](#33-the-preparation-of-pifs)
+    - [3.4 NMAG](#34-nmag)
+      - [3.4.1 GA](#341-ga)
+      - [3.4.2 The parameters of ANN](#342-the-parameters-of-ann)
+      - [3.4.3 The ANN error convergence graphs](#343-the-ann-error-convergence-graphs)
+      - [3.4.4 The Normalized results for SITS by using NMAG](#344-the-normalized-results-for-sits-by-using-nmag)
 
 <!-- /TOC -->
 
@@ -60,7 +60,7 @@ The fundamental package for scientific computing with Python.
 
 Version: 1.16.5
 
-## 0.5 Functions
+## 1. Functions
 NormSITS provide a platform to handle the relative radiometric normalization of landsat-8 SITS.
 In order to make users feel comfortable, NormSITS is designed to run in GUI mode. 
 
@@ -70,7 +70,7 @@ NormSITS include three main function:
 3. Clip landsat-8 SITS to obtain your own study area;
 4. A nonlinear Radiometric Normalization Model for Satellite Imgaes Time Series (named NMAG) is implemented.
 
-## 1. Build from source
+## 2. Build from source
 Suggestion: 
 >[Anaconda](https://www.anaconda.com) is a distribution of the Python and R programming languages for scientific computing (data science, machine learning applications, large-scale data processing, predictive analytics, etc.), that aims to simplify package management and deployment. The distribution includes data-science packages suitable for Windows, Linux, and macOS. With the help of Anaconda, you can easily build up the environment.
 
@@ -87,8 +87,8 @@ After a successful compilation, NormSITS looks like this:
 <img src='./png/display.png'>
 
 
-## 2. Experimental details of NMAG
-### 2.1 Obtain SITS
+## 3. Experimental details of NMAG
+### 3.1 Obtain SITS
 SITS with 21 high-quality landsat-8 satellite images covering an area of Tianjin were used in this study. 
 
 Users can Obtain SITS by following these steps:
@@ -102,7 +102,7 @@ Users can Obtain SITS by following these steps:
     step3: Fill in the attributes of SITS, such as CLOUD-MAX、START-TIME、END-TIME、PATH and ROW in the worldwide Reference System (WRS) and SPACECRAFT;
     step4: URL_ACQUIRE -> DOWNLOAD.
 
-### 2.2 Choose Study Area
+### 3.2 Choose Study Area
 The cost time of performing relative radiometric correction on entire images in SITS is too long, thus only 1000*1000 pixels were selected as the study area.
 
 Users can choose study Area by following these steps:
@@ -118,7 +118,7 @@ Users can choose study Area by following these steps:
 After a successful compilation, the false color composite image of the study area is shown in the following figure.
 <img src='./png/Figure4.jpg'>
 
-### 2.3 The Preparation of PIFs
+### 3.3 The Preparation of PIFs
 PIFs refer to pixels with constant radiometric value in SITS, which were mainly selected from artificial buildings, roads or bare ground pixels.
 
 Users can obtain PIFs by following these steps:
@@ -134,7 +134,7 @@ After a successful compilation, The extraction results of PIFs are shown in the 
 
 <img src='./png/Figure5.jpg'>
 
-### 2.4 NMAG
+### 3.4 NMAG
 A nonlinear Radiometric Normalization Model for Satellite Imgaes Time Series (named NMAG) based on Artificial Neural Networks (ANN) and Greedy Algroithm (GA) is implemented by these steps:
     
     step1: LT -> NMAG;
@@ -148,14 +148,14 @@ The GUI of NMAG is shown in the following figure:
 
 In the method, GA was used to determine the correction order of SITS and calculate the error between the image to be corrected and corrected images, which avoided the selection of a single reference image. ANN was used to obtain the optimal solution of error function, which minimized the radiometric distortion between images in SITS.
 
-#### 2.4.1 GA
+#### 3.4.1 GA
 A greedy algorithm is a simple, intuitive algorithm that is used in optimization problems. The algorithm makes the optimal choice at each step as it attempts to find the overall optimal way to solve the entire problem. 
 
-#### 2.4.2 The parameters of ANN
+#### 3.4.2 The parameters of ANN
 - Example : 
 - Normalize the image acquired in Nov 8,2017 by using NMAG. The parameters of ANN are shown in the following table:
 - <b>p.s.</b> In order to reduce the cost time of model training, The DN value (0-65535) is transformed into top-of-atmosphere(TOA) reflectance value (0-1). 
-<font size=1pt>
+
 <center>
 
 $TOA_n = DN_n * REFLECTANCE\_MULT\_BAND\_n  + REFLECTANCE\_ADD\_BAND\_n$ 
@@ -166,14 +166,13 @@ $TOA_n = DN_n * REFLECTANCE\_MULT\_BAND\_n  + REFLECTANCE\_ADD\_BAND\_n$
 |:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
 |1000|1|10|1|0.8281||8760|0.0117|3755|0.0115
 
-</font>
 
-#### 2.4.3 The ANN error convergence graphs 
+#### 3.4.3 The ANN error convergence graphs 
 - Example : 
 - Normalize the image acquired in Nov 8,2017 by using NMAG. The ANN error convergence graphs is shown in the following figure:
 
 <img src='./png/error_convergence.png'>
 
-#### 2.4.4 The Normalized results for SITS by using NMAG
+#### 3.4.4 The Normalized results for SITS by using NMAG
 After a successful compilation, The normalized results for SITS by using NMAG are shown in the following figure:
 <img src='./png/Figure6.jpg'>
