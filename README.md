@@ -162,9 +162,9 @@ $TOA_n = DN_n * REFLECTANCE\_MULT\_BAND\_n  + REFLECTANCE\_ADD\_BAND\_n$
 
 </center>
 
-|Iteration|Input Layer|Hiden Layer|Output Layer|Loss|Cost Time|Training Sample|Training RMSE|Testing Sample|Testing RMSE|
-|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
-|1000|1|10|1|0.8281||8760|0.0117|3755|0.0115
+|Iteration|Input Layer|Hiden Layer|Output Layer|Loss|Training Sample|Training RMSE|Testing Sample|Testing RMSE|
+|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
+|1000|1|10|1|0.8281|8760|0.0117|3755|0.0115
 
 
 #### 3.4.3 The ANN error convergence graphs 
